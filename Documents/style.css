@@ -1,0 +1,486 @@
+/* Custom Properties for easier theming */
+:root {
+    --primary-color: #6a0dad; /* A rich, deep purple */
+    --primary-light: #8a2be2; /* Lighter variant for accents */
+    --accent-color: #00bcd4; /* A vibrant blue-green */
+    --background-light: #f4f7f6;
+    --background-medium: #e9eff2;
+    --card-background: #ffffff;
+    --text-color-dark: #2c3e50;
+    --text-color-light: #ecf0f1;
+    --border-color-light: #e0e0e0;
+    --shadow-subtle: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --font-family-primary: 'Poppins', sans-serif;
+    --border-radius-base: 10px;
+    --border-radius-lg: 15px;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-family-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll due to menu animation */
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: var(--text-color-light);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 900;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+header h1 {
+    margin: 0 auto;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-shadow: 1px 1px 2px var(--shadow-medium);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--border-radius-base);
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.hamburger-menu:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.hamburger-menu .bar {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color-light);
+    margin: 6px 0;
+    transition: 0.4s transform, 0.4s opacity;
+}
+
+/* Hamburger menu animations (when open) */
+.hamburger-menu.open .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Navigation Menu (Glassmorphism + Blur) */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Hidden by default */
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 4px 0 15px var(--shadow-medium);
+    padding-top: 100px; /* Space for header */
+    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Springy transition */
+    z-index: 999;
+    /* Hide scrollbar by default, only show when needed */
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.nav-menu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.nav-menu.open {
+    left: 0;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu ul li a {
+    display: block;
+    padding: 18px 25px;
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker background for items */
+}
+
+.nav-menu ul li a:hover {
+    background-color: var(--primary-light);
+    color: var(--text-color-light);
+}
+
+/* Main Content Area */
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    animation: fadeIn 0.8s ease-out forwards; /* Fade in main content */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    color: var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+/* General Button Styles */
+button {
+    padding: 14px 30px;
+    border: none;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 10px var(--shadow-subtle);
+    background-image: linear-gradient(45deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: var(--text-color-light);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px var(--shadow-medium);
+    opacity: 0.9;
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px var(--shadow-subtle);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Specific Button Overrides */
+#admit-suggestion-btn {
+    background-color: var(--success-color); /* Overriding for specific button */
+    background-image: none; /* No gradient for this one */
+    display: block;
+    margin: 0 auto 2.5rem auto;
+}
+
+#admit-suggestion-btn:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+#suggestion-input-area {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--background-medium);
+    box-shadow: inset 0 2px 5px var(--shadow-subtle);
+}
+
+#suggestion-text {
+    width: calc(100% - 24px); /* Account for padding + border */
+    min-height: 150px;
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
+    resize: vertical;
+    font-size: 1rem;
+    line-height: 1.6;
+    background-color: var(--card-background);
+    color: var(--text-color-dark);
+    box-shadow: inset 0 1px 3px var(--shadow-subtle);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#suggestion-text:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2); /* Focus ring */
+    outline: none;
+}
+
+#suggestion-text::placeholder {
+    color: #95a5a6;
+}
+
+#submit-suggestion-btn {
+    background-color: var(--primary-color);
+    background-image: none;
+    color: var(--text-color-light);
+    padding: 12px 25px;
+}
+
+#submit-suggestion-btn:hover:not(:disabled) {
+    background-color: var(--primary-light);
+}
+
+#submission-message {
+    color: var(--success-color);
+    font-weight: 600;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.15rem;
+    animation: messageFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes messageFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Admin Login Form */
+#admin-login-form label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--text-color-dark);
+}
+
+#admin-login-form input[type="text"],
+#admin-login-form input[type="password"] {
+    width: calc(100% - 24px); /* Account for padding + border */
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
+    font-size: 1rem;
+    background-color: var(--card-background);
+    color: var(--text-color-dark);
+    box-shadow: inset 0 1px 3px var(--shadow-subtle);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#admin-login-form input[type="text"]:focus,
+#admin-login-form input[type="password"]:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+    outline: none;
+}
+
+#admin-login-form button[type="submit"] {
+    background-color: var(--primary-color);
+    background-image: none;
+    color: var(--text-color-light);
+}
+
+#admin-login-form button[type="submit"]:hover:not(:disabled) {
+    background-color: var(--primary-light);
+}
+
+.error-message {
+    color: var(--error-color);
+    margin-top: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.1rem;
+    animation: messageFadeIn 0.5s ease-out forwards;
+}
+
+/* Suggestions Display */
+.suggestions-list-container {
+    display: grid;
+    gap: 20px;
+    margin-top: 1.5rem;
+}
+
+.suggestion-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 4px 10px var(--shadow-subtle);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: cardEntrance 0.6s ease-out forwards;
+    opacity: 0; /* Hidden initially for animation */
+}
+
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.suggestion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.suggestion-card p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--text-color-dark);
+}
+
+.suggestion-card .meta {
+    font-size: 0.8em;
+    color: #7f8c8d;
+    margin-top: 1rem;
+    text-align: right;
+    font-weight: 400;
+}
+
+.suggestion-content {
+    overflow: hidden;
+}
+
+.suggestion-content.truncated {
+    max-height: 4.8em; /* Roughly 3 lines of text */
+    position: relative;
+}
+
+.suggestion-content.truncated::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 3em; /* Height of the fade */
+    background: linear-gradient(to top, var(--card-background) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.read-more-btn, .read-less-btn {
+    background: none;
+    border: none;
+    color: var(--primary-light);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95em;
+    padding: 0;
+    margin-top: 0.8rem;
+    display: inline-block;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.read-more-btn:hover, .read-less-btn:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#no-suggestions-message {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    main {
+        margin: 1.5rem;
+        padding: 1.5rem;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.8rem 1rem;
+    }
+    header h1 {
+        font-size: 1.3rem;
+        letter-spacing: 0.05em;
+    }
+    .hamburger-menu {
+        padding: 5px;
+    }
+    .hamburger-menu .bar {
+        width: 26px;
+        margin: 4px 0;
+    }
+    .nav-menu {
+        width: 250px;
+    }
+    .nav-menu ul li a {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    #suggestion-text,
+    #admin-login-form input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    .suggestion-card {
+        padding: 1rem;
+    }
+    #submission-message, .error-message {
+        font-size: 1rem;
+    }
+}

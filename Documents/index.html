@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestion Box</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs for Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <header>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <h1>Suggestion Box</h1>
+        <nav class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="#" id="admin-login-link">Admin Login</a></li>
+                <!-- Admin Logout link container, hidden by default -->
+                <li id="admin-logout-link-container" class="hidden"><a href="#" id="admin-logout-link">Admin Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="public-suggestion-section">
+            <button id="admit-suggestion-btn">Admit Suggestion</button>
+            <div id="suggestion-input-area" class="hidden">
+                <textarea id="suggestion-text" placeholder="Share your thoughts here..."></textarea>
+                <button id="submit-suggestion-btn" class="hidden">Submit</button>
+                <p id="submission-message" class="hidden"></p>
+            </div>
+        </section>
+
+        <section id="admin-login-section" class="hidden">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form">
+                <label for="admin-username">Username:</label>
+                <input type="text" id="admin-username" required autocomplete="username">
+                <label for="admin-password">Password:</label>
+                <input type="password" id="admin-password" required autocomplete="current-password">
+                <button type="submit">Login</button>
+                <p id="login-error-message" class="error-message hidden"></p>
+            </form>
+        </section>
+
+        <section id="admin-suggestions-section" class="hidden">
+            <h2>All Suggestions</h2>
+            <div id="suggestions-list">
+                <!-- Suggestions will be loaded here by JavaScript -->
+                <p id="no-suggestions-message">No suggestions yet.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
