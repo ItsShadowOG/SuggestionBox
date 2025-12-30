@@ -52,7 +52,7 @@ The Suggestion Box is a simple, modern, and interactive web application designed
 1.  Open the web application in your browser.
 2.  Click the **☰ (hamburger menu)** icon in the top-left corner.
 3.  Click "Admin Login".
-4.  Enter the admin username (`thewizard99`) and password (`WIZARD242427`) you configured in Firebase Authentication.
+4.  Enter the admin username and password you configured in Firebase Authentication.
 5.  Click "Login".
 6.  Upon successful login, you will be redirected to the "All Suggestions" view, where you can see all submitted suggestions in real-time.
 7.  For long suggestions, click "Show More" to expand and "Show Less" to truncate.
